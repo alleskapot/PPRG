@@ -1,0 +1,6 @@
+\\mac\home\documents\visual studio 2015\Projects\pprg\pprg\bin\Debug\pprg.exe.config
+\\mac\home\documents\visual studio 2015\Projects\pprg\pprg\bin\Debug\pprg.exe
+\\mac\home\documents\visual studio 2015\Projects\pprg\pprg\bin\Debug\pprg.pdb
+\\mac\home\documents\visual studio 2015\Projects\pprg\pprg\obj\Debug\pprg.csprojResolveAssemblyReference.cache
+\\mac\home\documents\visual studio 2015\Projects\pprg\pprg\obj\Debug\pprg.exe
+\\mac\home\documents\visual studio 2015\Projects\pprg\pprg\obj\Debug\pprg.pdb
