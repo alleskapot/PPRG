@@ -27,6 +27,11 @@ namespace pprg
             return this.nodes.SingleOrDefault(x => x.name == name);
         }
 
+        public void clearVisited()
+        {
+            this.visited.Clear();
+        }
+
         public void DepthFirstSearch(Node startNode, Node destinationNode)
         {
             Console.WriteLine("starting at : {0}", startNode.name);
@@ -45,6 +50,7 @@ namespace pprg
 
                     foreach (Edge e in item.neighbours)
                     {
+                        
                         //Console.WriteLine("STACK: add {0}", e.neighbour.name);
                         stack.Push(e.neighbour);
 
@@ -59,6 +65,30 @@ namespace pprg
             }
 
             Console.WriteLine("done");
+        }
+
+        public void DepthFirstSearchRecursive(Node currentNode, Node destinationNode)
+        {
+            if (currentNode == destinationNode)
+            {
+                Console.WriteLine("found destination");
+                return;
+            }
+            else
+            {
+                foreach (Edge e in currentNode.neighbours)
+                {
+                    lock(visited)
+                    {
+                        var discoverd = visited.SingleOrDefault(x => x == e.neighbour.name);
+                        if (discoverd == null)
+                        {
+                            Task.Run(() => DepthFirstSearchRecursive(e.neighbour, destinationNode));
+                        }
+                    }
+                }
+                visited.Add(currentNode.name);
+            }
         }
     }
 }

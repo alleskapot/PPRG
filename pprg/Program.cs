@@ -26,7 +26,7 @@ namespace pprg
             Node salzbrug = new Node("Salzbrug");
 
             // Define Edges
-            wien.AddNeighbourReverse(new Edge(ref stpoelten, 3));
+            /*wien.AddNeighbourReverse(new Edge(ref stpoelten, 3));
             wien.AddNeighbourReverse(new Edge(ref graz, 9));
             stpoelten.AddNeighbourReverse(new Edge(ref graz, 9));
             stpoelten.AddNeighbourReverse(new Edge(ref linz, 3));
@@ -35,9 +35,20 @@ namespace pprg
             salzbrug.AddNeighbourReverse(new Edge(ref villach, 6));
             salzbrug.AddNeighbourReverse(new Edge(ref innsbruck, 6));
             graz.AddNeighbourReverse(new Edge(ref villach, 4));
-            innsbruck.AddNeighbourReverse(new Edge(ref bregenz, 6));
+            innsbruck.AddNeighbourReverse(new Edge(ref bregenz, 6));*/
 
-            NodeList list = new NodeList();
+            wien.AddNeighbour(new Edge(ref stpoelten, 3));
+            wien.AddNeighbour(new Edge(ref graz, 9));
+            stpoelten.AddNeighbour(new Edge(ref graz, 9));
+            stpoelten.AddNeighbour(new Edge(ref linz, 3));
+            linz.AddNeighbour(new Edge(ref graz, 10));
+            linz.AddNeighbour(new Edge(ref salzbrug, 5));
+            salzbrug.AddNeighbour(new Edge(ref villach, 6));
+            salzbrug.AddNeighbour(new Edge(ref innsbruck, 6));
+            graz.AddNeighbour(new Edge(ref villach, 4));
+            innsbruck.AddNeighbour(new Edge(ref bregenz, 6));
+
+             NodeList list = new NodeList();
             list.Add(wien);
             list.Add(linz);
             list.Add(stpoelten);
@@ -58,6 +69,14 @@ namespace pprg
             list.DepthFirstSearch(startNode, destinationNode);
             sw.Start();
             Console.WriteLine("DFS took {0}ms to find the destination", sw.ElapsedMilliseconds);
+
+            list.clearVisited();
+            sw.Reset();
+
+            sw.Start();
+            list.DepthFirstSearchRecursive(startNode, destinationNode);
+            sw.Stop();
+            Console.WriteLine("DFS-Recursive took {0}ms to find the destination", sw.ElapsedMilliseconds);
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
